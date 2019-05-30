@@ -1,5 +1,5 @@
 module.exports = function(app) {
-    const customers = require('../controller/customer.controller.js');
+    const usuarios = require('../controller/usuarios.controller.js');
  
     // Create a new Usuarios
     app.post('/api/usuarios', usuarios.create);
