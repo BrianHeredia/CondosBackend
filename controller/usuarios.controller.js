@@ -3,9 +3,9 @@ const Usuarios = db.usuarios;
 
 // Post un Usuario
 exports.create = (req, res) => {	
-	// Save to PostgreSQL database
+	// Save to MySQL database
 	Usuarios.create({
-				"uid": req.body.uid,
+				"cedula": req.body.cedula,
 				"first": req.body.first, 
 				"last": req.body.last, 
 				"email": req.body.email
@@ -22,7 +22,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
 	Usuarios.findAll().then(usuarios => {
 			// Send All Usuarios to Client
-			res.json(usuarios.sort(function(c1, c2){return c1.uid - c2.uid}));
+			res.json(usuarios.sort(function(c1, c2){return c1.cedula - c2.cedula}));
 		}).catch(err => {
 			console.log(err);
 			res.status(500).json({msg: "error", details: err});
@@ -31,7 +31,7 @@ exports.findAll = (req, res) => {
 
 // Find a Usuario by Id
 exports.findById = (req, res) => {	
-	Usuarios.findById(req.params.uid).then(usuario => {
+	Usuarios.findById(req.params.cedula).then(usuario => {
 			res.json(usuario);
 		}).catch(err => {
 			console.log(err);
@@ -41,10 +41,10 @@ exports.findById = (req, res) => {
  
 // Update a Usuario
 exports.update = (req, res) => {
-	const id = req.body.uid;
+	const cedula = req.body.cedula;
 	Usuarios.update( req.body, 
-			{ where: {uid: uid} }).then(() => {
-				res.status(200).json( { mgs: "Updated Successfully -> Customer Id = " + uid } );
+			{ where: {cedula: cedula} }).then(() => {
+				res.status(200).json( { mgs: "Updated Successfully -> Cedula= " + cedula } );
 			}).catch(err => {
 				console.log(err);
 				res.status(500).json({msg: "error", details: err});
@@ -53,11 +53,11 @@ exports.update = (req, res) => {
 
 // Delete a Usuario by Id
 exports.delete = (req, res) => {
-	const id = req.params.uid;
+	const cedula = req.params.cedula;
 	Usuarios.destroy({
-			where: { uid: uid }
+			where: { cedula : cedula }
 		}).then(() => {
-			res.status(200).json( { msg: 'Deleted Successfully -> Usuario Id = ' + uid } );
+			res.status(200).json( { msg: 'Deleted Successfully -> cedula = ' + cedula } );
 		}).catch(err => {
 			console.log(err);
 			res.status(500).json({msg: "error", details: err});

@@ -11,16 +11,17 @@ const corsOptions = {
  
 app.use(cors(corsOptions))
  
-const db = require('./app/config/db.config.js');
+const db = require('./config/db.config.js');
   
 db.sequelize.sync().then(() => {
   console.log('Syncing');
 });
  
-require('./app/route/usuarios.route.js')(app);
+require('./route/usuarios.route.js')(app);
+require('./route/grupos.route.js')(app);
  
 // Create a Server
-var server = app.listen(8080, function () {
+var server = app.listen(3000, function () {
  
   let host = server.address().address
   let port = server.address().port
