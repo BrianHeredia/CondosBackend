@@ -20,6 +20,8 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 //Models/tables
-db.usuarios= require('../model/usuarios.model.js/index.js')(sequelize, Sequelize);
+db.usuarios= require('../models/usuarios.model.js')(sequelize, Sequelize);
+db.usuario_grupo= require('../models/usuario_grupo.model.js')(sequelize,Sequelize);
+db.grupo_vecinal= require('../models/grupo_vecinal.model.js')(sequelize,Sequelize);
 
 module.exports = db;

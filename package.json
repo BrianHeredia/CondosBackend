@@ -1,19 +1,20 @@
 {
-  "name": "nodejs-express-sequelizejs-postgresql",
+  "name": "condos",
   "version": "1.0.0",
-  "description": "nodejs-express-sequelizejs-postgresql",
+  "description": "Condos Backend",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "NodeJs-Express-RestAPIs-SequelizeJs-CRUD-PostgreSQL"
+    "Condos"
   ],
-  "author": "JSA",
-  "license": "ISC",
+  "author": "Brian",
+  "license": "non",
   "dependencies": {
     "cors": "^2.8.4",
     "express": "^4.16.3",
+    "mysql2": "^1.6.5",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.37.6"

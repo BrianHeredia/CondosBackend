@@ -1,9 +1,9 @@
 const env = {
-  database: 'condos',
-  username: 'postgres',
-  password: '123',
+  database: 'Condos',
+  username: 'root',
+  password: null,
   host: 'localhost',
-  dialect: 'postgres',
+  dialect: 'mysql',
   pool: {
 	  max: 5,
 	  min: 0,
