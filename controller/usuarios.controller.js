@@ -5,6 +5,7 @@ const Usuarios = db.usuarios;
 exports.create = (req, res) => {	
 	// Save to MySQL database
 	Usuarios.create({
+				"uid": req.body.uid,
 				"cedula": req.body.cedula,
 				"first": req.body.first, 
 				"last": req.body.last, 
@@ -17,12 +18,25 @@ exports.create = (req, res) => {
 			res.status(500).json({msg: "error", details: err});
 		});
 };
+
+// Post de agregar un usuario a un grupo
+exports.create = (req, res) => {	
+	// Save to MySQL database
+	Usuarios.addGrupo_vecinal(db.grupo_vecinal , { through: { alicuota: req.body.alicuota, unit: req.body.unit }})
+		.then(usuarioGrupo => {		
+			// Send created usuario to client
+			res.json(usuarioGrupo);
+		}).catch(err => {
+			console.log(err);
+			res.status(500).json({msg: "error", details: err});
+		});
+};
  
 // FETCH todos los usuarios
 exports.findAll = (req, res) => {
 	Usuarios.findAll().then(usuarios => {
 			// Send All Usuarios to Client
-			res.json(usuarios.sort(function(c1, c2){return c1.cedula - c2.cedula}));
+			res.json(usuarios.sort(function(c1, c2){return c1.uid - c2.uid}));
 		}).catch(err => {
 			console.log(err);
 			res.status(500).json({msg: "error", details: err});
@@ -31,20 +45,21 @@ exports.findAll = (req, res) => {
 
 // Find a Usuario by Id
 exports.findById = (req, res) => {	
-	Usuarios.findById(req.params.cedula).then(usuario => {
+	Usuarios.findById(req.params.uid).then(usuario => {
 			res.json(usuario);
 		}).catch(err => {
 			console.log(err);
 			res.status(500).json({msg: "error", details: err});
 		});
 };
+
  
 // Update a Usuario
 exports.update = (req, res) => {
-	const cedula = req.body.cedula;
+	const uid = req.body.uid;
 	Usuarios.update( req.body, 
-			{ where: {cedula: cedula} }).then(() => {
-				res.status(200).json( { mgs: "Updated Successfully -> Cedula= " + cedula } );
+			{ where: {uid: uid} }).then(() => {
+				res.status(200).json( { mgs: "Updated Successfully -> uid= " + uid } );
 			}).catch(err => {
 				console.log(err);
 				res.status(500).json({msg: "error", details: err});
@@ -53,11 +68,11 @@ exports.update = (req, res) => {
 
 // Delete a Usuario by Id
 exports.delete = (req, res) => {
-	const cedula = req.params.cedula;
+	const uid = req.params.uid;
 	Usuarios.destroy({
-			where: { cedula : cedula }
+			where: { uid : uid }
 		}).then(() => {
-			res.status(200).json( { msg: 'Deleted Successfully -> cedula = ' + cedula } );
+			res.status(200).json( { msg: 'Deleted Successfully -> uid = ' + uid } );
 		}).catch(err => {
 			console.log(err);
 			res.status(500).json({msg: "error", details: err});

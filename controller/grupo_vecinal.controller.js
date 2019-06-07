@@ -28,35 +28,35 @@ exports.findAll = (req, res) => {
 		});
 };
 
-// Find a Usuario by Id
+// Find a GrupoVecinal by Id
 exports.findById = (req, res) => {	
-	Usuarios.findById(req.params.cedula).then(usuario => {
-			res.json(usuario);
+	GrupoVecinal.findById(req.params.idgrupo).then(grupo => {
+			res.json(grupo);
 		}).catch(err => {
 			console.log(err);
 			res.status(500).json({msg: "error", details: err});
 		});
 };
  
-// Update a Usuario
+// Update a GrupoVecinal
 exports.update = (req, res) => {
-	const cedula = req.body.cedula;
-	Usuarios.update( req.body, 
-			{ where: {cedula: cedula} }).then(() => {
-				res.status(200).json( { mgs: "Updated Successfully -> Cedula= " + cedula } );
+	const idgrupo = req.body.idgrupo;
+	GrupoVecinal.update( req.body, 
+			{ where: {idgrupo: idgrupo} }).then(() => {
+				res.status(200).json( { mgs: "Updated Successfully -> idgrupo= " + idgrupo } );
 			}).catch(err => {
 				console.log(err);
 				res.status(500).json({msg: "error", details: err});
 			});
 };
 
-// Delete a Usuario by Id
+// Delete a GrupoVecinal by Id
 exports.delete = (req, res) => {
-	const cedula = req.params.cedula;
-	Usuarios.destroy({
-			where: { cedula : cedula }
+	const idgrupo = req.params.idgrupo;
+	GrupoVecinal.destroy({
+			where: { idgrupo : idgrupo }
 		}).then(() => {
-			res.status(200).json( { msg: 'Deleted Successfully -> cedula = ' + cedula } );
+			res.status(200).json( { msg: 'Deleted Successfully -> idgrupo = ' + idgrupo } );
 		}).catch(err => {
 			console.log(err);
 			res.status(500).json({msg: "error", details: err});

@@ -8,11 +8,11 @@ module.exports = function(app) {
     app.get('/api/usuarios', usuarios.findAll);
  
     // Retrieve a single Usuarios by Id
-    app.get('/api/usuarios/:cedula', usuarios.findById);
+    app.get('/api/usuarios/:uid', usuarios.findById);
  
     // Update a Usuarios with Id
     app.put('/api/usuarios', usuarios.update);
  
     // Delete a Usuarios with Id
-    app.delete('/api/usuarios/:cedula', usuarios.delete);
+    app.delete('/api/usuarios/:uid', usuarios.delete);
 }
