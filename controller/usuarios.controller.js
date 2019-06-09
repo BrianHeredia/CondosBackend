@@ -18,19 +18,6 @@ exports.create = (req, res) => {
 			res.status(500).json({msg: "error", details: err});
 		});
 };
-
-// Post de agregar un usuario a un grupo
-exports.create = (req, res) => {	
-	// Save to MySQL database
-	Usuarios.addGrupo_vecinal(db.grupo_vecinal , { through: { alicuota: req.body.alicuota, unit: req.body.unit }})
-		.then(usuarioGrupo => {		
-			// Send created usuario to client
-			res.json(usuarioGrupo);
-		}).catch(err => {
-			console.log(err);
-			res.status(500).json({msg: "error", details: err});
-		});
-};
  
 // FETCH todos los usuarios
 exports.findAll = (req, res) => {
