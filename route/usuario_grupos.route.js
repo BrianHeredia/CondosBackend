@@ -3,6 +3,9 @@ module.exports = function(app) {
  
     // Create a new Grupo
     app.post('/api/user_grupo', userGroups.create);
+   
+    //Join a group
+    app.post('/api/user_grupo/:codigo', userGroups.join);
     /*
     // Retrieve all grupos
     app.get('/api/user_grupo', userGroups.findAll);
