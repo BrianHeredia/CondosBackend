@@ -20,8 +20,11 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 //Models/tables
-db.usuarios= require('../models/usuarios.model.js')(sequelize, Sequelize);
-db.usuario_grupo= require('../models/usuario_grupo.model.js')(sequelize,Sequelize);
-db.grupo_vecinal= require('../models/grupo_vecinal.model.js')(sequelize,Sequelize);
+db.usuarios = require('../models/usuarios.model.js')(sequelize, Sequelize);
+db.grupo_vecinal = require('../models/grupo_vecinal.model.js')(sequelize,Sequelize);
+db.usuario_grupo = require('../models/usuario_grupo.model.js')(sequelize,Sequelize);
+
+db.usuarios.belongsToMany(db.grupo_vecinal, {through: db.usuario_grupo});
+db.grupo_vecinal.belongsToMany(db.usuarios, {through: db.usuario_grupo});
 
 module.exports = db;

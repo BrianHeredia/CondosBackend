@@ -1,65 +1,53 @@
 const db = require('../config/db.config.js');
-const UsuarioGrupo = db.usuario_grupo;
+const Usuarios = db.usuarios;
+const GrupoVecinal = db.grupo_vecinal;
+const UserGroups = db.usuario_grupo;
 
-// Post un Usuario
+// Post de agregar un usuario a un grupo
 exports.create = (req, res) => {	
 	// Save to MySQL database
-	Usuarios.create({
-				"cedula": req.body.cedula,
-				"first": req.body.first, 
-				"last": req.body.last, 
-				"email": req.body.email
-			}).then(usuario => {		
+	Usuarios.findById(req.body.uid).then(usuario => {
+		usuario.addGrupo_vecinal( req.body.idgrupo , { through: { alicuota: req.body.alicuota, unit: req.body.unit, admin: true }}).then(usuarioGrupo => {		
 			// Send created usuario to client
-			res.json(usuario);
-		}).catch(err => {
-			console.log(err);
-			res.status(500).json({msg: "error", details: err});
-		});
-};
- 
-// FETCH todos los usuarios
-exports.findAll = (req, res) => {
-	Usuarios.findAll().then(usuarios => {
-			// Send All Usuarios to Client
-			res.json(usuarios.sort(function(c1, c2){return c1.cedula - c2.cedula}));
-		}).catch(err => {
+			res.json(usuarioGrupo);
+		})}).catch(err => {
 			console.log(err);
 			res.status(500).json({msg: "error", details: err});
 		});
 };
 
-// Find a Usuario by Id
+// Find grupos de Usuario by Id
 exports.findById = (req, res) => {	
-	Usuarios.findById(req.params.cedula).then(usuario => {
-			res.json(usuario);
-		}).catch(err => {
+	Usuarios.findById(req.params.uid).then(usuario => {
+		usuario.getGrupo_vecinals({ through: {uid: usuario.uid }}).then((grupos)=>{
+			res.json(grupos);
+		})}).catch(err => {
 			console.log(err);
 			res.status(500).json({msg: "error", details: err});
 		});
 };
- 
-// Update a Usuario
-exports.update = (req, res) => {
-	const cedula = req.body.cedula;
-	Usuarios.update( req.body, 
-			{ where: {cedula: cedula} }).then(() => {
-				res.status(200).json( { mgs: "Updated Successfully -> Cedula= " + cedula } );
+
+//Usuario se une a un grupo ya existente
+exports.join = (req, res) => {
+	GrupoVecinal.findOne({ where: {codigo: req.params.codigo } }).then(grupo =>{
+		if(grupo){
+			console.log(grupo);
+			UserGroups.create({
+				"grupoVecinalIdgrupo": grupo.idgrupo,
+				"usuarioUid": req.body.uid,
+				"alicuota": req.body.alicuota,
+				"unit": req.body.unit,
+				"admin": false
+			}).then(usergrupo =>{
+				res.json(usergrupo);
 			}).catch(err => {
 				console.log(err);
 				res.status(500).json({msg: "error", details: err});
 			});
-};
-
-// Delete a Usuario by Id
-exports.delete = (req, res) => {
-	const cedula = req.params.cedula;
-	Usuarios.destroy({
-			where: { cedula : cedula }
-		}).then(() => {
-			res.status(200).json( { msg: 'Deleted Successfully -> cedula = ' + cedula } );
-		}).catch(err => {
-			console.log(err);
-			res.status(500).json({msg: "error", details: err});
-		});
-};
+		}
+		else{
+			console.log('group not found');
+			res.status(404).json({msg: "group not found"});
+		}
+	})
+}
