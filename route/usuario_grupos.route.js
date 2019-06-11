@@ -10,6 +10,7 @@ module.exports = function(app) {
     // Retrieve all grupos
     app.get('/api/user_grupo', userGroups.findAll);
  */
+   
     // Retrieve a single Grupo by Id
     app.get('/api/user_grupo/:uid', userGroups.findById);
  /*
