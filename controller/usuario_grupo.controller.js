@@ -51,3 +51,14 @@ exports.join = (req, res) => {
 		}
 	})
 }
+
+// Find usuarios by idgrupo
+exports.findUsers = (req, res) => {	
+	GrupoVecinal.findById(req.params.idgrupo).then(grupo => {
+		grupo.getUsuarios({ through: {idgrupo: grupo.idgrupo }}).then((usuarios)=>{
+			res.json(usuarios);
+		})}).catch(err => {
+			console.log(err);
+			res.status(500).json({msg: "error", details: err});
+		});
+};
