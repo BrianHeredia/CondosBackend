@@ -18,7 +18,7 @@ module.exports = function(app) {
     app.put('/api/user_grupo', userGroups.update);
   
     // Delete a Grupos with Id
-    app.delete('/api/user_grupo/:uid', userGroups.delete);
+    app.delete('/api/user_grupo/:uid/:idgrupo', userGroups.delete);
   
    
 }
