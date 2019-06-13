@@ -64,22 +64,22 @@ exports.findUsers = (req, res) => {
 
 // Update a asmin atributte of Usuario
 exports.update = (req, res) => {
-	console.log('done');
 	const uid = req.body.uid;
 	UserGroups.update( {admin: req.body.admin}, 
-			{ where: {usuarioUid: uid } }).then(() => {
+			{ where: {usuarioUid: uid, grupoVecinalIdgrupo: req.body.idgrupo }  }).then(() => {
 				res.status(200).json( { mgs: "Updated Successfully -> uid = " + uid } );
 			}).catch(err => {
 				console.log(err);
-				res.status(500).json({msg: "error", details: err});
+				res.status(500).json({msg: "ERROR", details: err});
 			});
 };
 
 //Delete a usuario from a grupo by id
 exports.delete = (req, res) => {
 	const uid = req.params.uid;
+	const idgrupo = req.params.idgrupo;
 	UserGroups.destroy({
-			where: {usuarioUid : uid }
+			where: {usuarioUid : uid, grupoVecinalIdgrupo: idgrupo }
 		}).then(() => {
 			res.status(200).json( { msg: 'Deleted Successfully -> uid = ' + uid } );
 		}).catch(err => {
