@@ -14,7 +14,7 @@ app.use(cors(corsOptions))
 const db = require('./config/db.config.js');
   
 db.sequelize.sync().then(() => {
-  console.log('Syncing');
+  console.log('Syncing ==================================');
 });
  
 require('./route/usuarios.route.js')(app);
