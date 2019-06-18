@@ -21,6 +21,9 @@ require('./route/usuarios.route.js')(app);
 require('./route/grupos.route.js')(app);
 require('./route/usuario_grupos.route.js')(app);
 require('./route/personas.route.js')(app);
+require('./route/pagos.route.js')(app);
+require('./route/gastos.route.js')(app);
+require('./route/deudores.route.js')(app);
 
 // Create a Server
 var server = app.listen(3000, function () {

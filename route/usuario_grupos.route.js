@@ -14,6 +14,9 @@ module.exports = function(app) {
     // Retrieve a single Grupo by Id
     app.get('/api/user_grupo/:uid', userGroups.findById);
 
+    // Retrieve a user privileges
+    app.get('/api/user_grupo/:uid/:idgrupo', userGroups.findByUidIdgrupo);
+
     // Update a Grupo with Id
     app.put('/api/user_grupo', userGroups.update);
   
