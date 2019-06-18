@@ -62,7 +62,17 @@ exports.findUsers = (req, res) => {
 		});
 };
 
-// Update a asmin atributte of Usuario
+// Find usuario by idgrupo and uid
+exports.findByUidIdgrupo = (req, res) => {	
+	UserGroups.findOne({ where: {grupoVecinalIdgrupo: req.params.idgrupo, usuarioUid: req.params.uid } }).then(grupouser => {
+		res.json(grupouser);
+		}).catch(err => {
+			console.log(err);
+			res.status(500).json({msg: "error", details: err});
+		});
+};
+
+// Update a admin atributte of Usuario
 exports.update = (req, res) => {
 	const uid = req.body.uid;
 	UserGroups.update( {admin: req.body.admin}, 
