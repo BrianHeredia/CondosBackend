@@ -6,5 +6,8 @@ module.exports = function(app) {
     
     // Retrieve all grupos
     app.get('/api/pagos/:idgrupo/:mes', pagos.findAll);
+    
+    // Retrieve all grupos
+    app.get('/api/pagos/user/:idgrupo/:uid', pagos.findPagos);
 
 }
