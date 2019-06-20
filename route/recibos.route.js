@@ -7,4 +7,7 @@ module.exports = function(app) {
     // Retrieve all recibos de un user grupo
     app.get('/api/recibos/:idgrupo/:uid', recibos.findAll);
 
+    // Update recibo ya pagado
+    app.put('/api/recibos', recibos.update);
+ 
 }
