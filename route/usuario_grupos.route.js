@@ -6,10 +6,10 @@ module.exports = function(app) {
    
     //Join a group
     app.post('/api/user_grupo/:codigo', userGroups.join);
-    /*
+    
     // Retrieve all grupos
-    app.get('/api/user_grupo', userGroups.findAll);
- */
+    app.get('/api/user_grupo/users/:idgrupo', userGroups.findUsuarios);
+ 
    
     // Retrieve a single Grupo by Id
     app.get('/api/user_grupo/:uid', userGroups.findById);

@@ -2,6 +2,7 @@ const db = require('../config/db.config.js');
 const Usuarios = db.usuarios;
 const GrupoVecinal = db.grupo_vecinal;
 const UserGroups = db.usuario_grupo;
+const sequelize = require('../config/sequelize-conf.js');
 
 // Post de agregar un usuario a un grupo
 exports.create = (req, res) => {	
@@ -60,6 +61,14 @@ exports.findUsers = (req, res) => {
 			console.log(err);
 			res.status(500).json({msg: "error", details: err});
 		});
+};
+
+// Find usuarios by idgrupo
+exports.findUsuarios = (req, res) => {	
+	sequelize.query("SELECT `usuarioUid`, `alicuota` FROM `usuario_grupos` WHERE `usuario_grupos`.`grupoVecinalIdgrupo` = :idgrupo ",
+	{ replacements: { idgrupo: req.params.idgrupo },  type: sequelize.QueryTypes.SELECT} ).then(user=>{
+		res.json(user);
+	});
 };
 
 // Find usuario by idgrupo and uid

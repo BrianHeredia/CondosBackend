@@ -43,5 +43,5 @@ db.grupo_vecinal.hasMany(db.gastos);
 db.gastos.belongsToMany(db.recibos, {through: 'recibos_gastos'});
 db.recibos.belongsToMany(db.gastos, {through: 'recibos_gastos'});
 db.bancos.hasOne(db.pagos);
-
+db.recibos.hasOne(db.pagos);
 module.exports = db;

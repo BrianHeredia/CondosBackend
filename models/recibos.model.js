@@ -5,7 +5,10 @@ module.exports = (sequelize, Sequelize) => {
 		},
 		date: {
 			type: Sequelize.DATEONLY
-	  	}
+		},
+		pagado: {
+			type: Sequelize.BOOLEAN
+		}  
 	});
 	return Recibos;
 }
