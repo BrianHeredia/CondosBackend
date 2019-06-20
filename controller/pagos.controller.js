@@ -9,7 +9,8 @@ exports.create = (req, res) => {
 				"ref": req.body.ref,
 				"monto": req.body.monto,
 				"date": req.body.date, 
-				"bancoId": req.body.banco, 
+				"bancoId": req.body.banco,
+				"reciboId": req.body.recibo,  
                 "usuarioUid": req.body.uid, 
                 "grupoVecinalIdgrupo": req.body.idgrupo
 			}).then(pago => {		
