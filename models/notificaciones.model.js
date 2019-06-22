@@ -1,14 +1,19 @@
 module.exports = (sequelize, Sequelize) => {
-	const Notificaciones = sequelize.define('notificaciones', {
-		título: {
+    const notificaciones = sequelize.define('notificaciones', {
+        id: {
+            type: Sequelize.INTEGER,
+            primaryKey: true, 
+            autoIncrement: true
+        },
+        titulo: {
             type: Sequelize.STRING
         },
-        mensaje:{
+        mensaje: {
             type: Sequelize.TEXT
         },
         isAR: {
             type: Sequelize.BOOLEAN
         }
-	});
-	return Notificaciones;
+    });
+    return notificaciones;
 }
