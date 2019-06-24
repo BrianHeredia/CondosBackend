@@ -31,7 +31,7 @@ exports.create = (req, res) => {
         });
     };
 
-    // Delete a Notificacion by Titulo
+    // Delete a Notificacion by id
     exports.delete = (req, res) => {
         const id = req.params.id;
         Notificaciones.destroy({
@@ -54,7 +54,7 @@ exports.create = (req, res) => {
     };
 
     // FETCH todas las notificaciones de un user de un grupo 2
-    exports.findAll = (req, res) => {
+    exports.findAllbyID = (req, res) => {
     Notificaciones.findAll({
     attributes: [['titulo', 'titulo'],['grupoVecinalIdgrupo', 'grupoVecinalIdgrupo']],
     where: {[Op.and]: [{'$notificaciones.grupoVecinalIdgrupo$': {[Op.eq]: this.usuarioUid}}]}.then(Notificaciones => {
