@@ -5,7 +5,7 @@ const Notificaciones = db.notificaciones;
 exports.create = (req, res) => {
     // Save to MySQL database
     Notificaciones.create({
-        "titulo": req.body.titulo,
+        "título": req.body.título,
         "mensaje": req.body.mensaje,
         "isAR": req.body.isAR, 
         "grupoVecinalIdgrupo": req.body.idgrupo,
@@ -53,5 +53,14 @@ exports.create = (req, res) => {
             });
     };
 
+    // FETCH todas las notificaciones de un user de un grupo 2
+    exports.findAll = (req, res) => {
+    Notificaciones.findAll({
+    attributes: [['titulo', 'titulo'],['grupoVecinalIdgrupo', 'grupoVecinalIdgrupo']],
+    where: {[Op.and]: [{'$notificaciones.grupoVecinalIdgrupo$': {[Op.eq]: this.usuarioUid}}]}.then(Notificaciones => {
+        res.json(Notificaciones);
+    }),         
+    });
+};
 
 };
