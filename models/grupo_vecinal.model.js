@@ -4,6 +4,9 @@ module.exports = (sequelize, Sequelize) => {
     nombre: Sequelize.STRING,
     direccion: Sequelize.STRING,
     codigo: Sequelize.STRING
+  },
+  {
+		timestamps: false
   });
   return grupo_vecinal;
 };
