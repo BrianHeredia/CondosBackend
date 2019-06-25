@@ -6,11 +6,11 @@ module.exports = function (app) {
 /*
     // Delete a Notificacion
     app.delete('/api/notificaciones/:idgrupo', Notificaciones.delete);
-
-    // Retrieve all notificaciones de un user grupo
-    app.get('/api/notificaciones/:idgrupo/:uid', Notificaciones.findAll);
-
 */
+    // Retrieve all notificaciones de un user grupo
+    app.get('/api/notificaciones/:idgrupo', Notificaciones.findAll);
+
+
 
 
 }

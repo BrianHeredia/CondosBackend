@@ -1,11 +1,12 @@
 const db = require('../config/db.config.js');
 const Notificaciones = db.notificaciones;
+const sequelize = require('../config/sequelize-conf.js');
 
 // Post Notificacion
 exports.create = (req, res) => {
     // Save to MySQL database
     Notificaciones.create({
-        "título": req.body.título,
+        "titulo": req.body.titulo,
         "mensaje": req.body.mensaje,
         "isAR": req.body.isAR, 
         "grupoVecinalIdgrupo": req.body.idgrupo,
@@ -17,12 +18,12 @@ exports.create = (req, res) => {
         console.log(err);
         res.status(500).json({ msg: "error", details: err });
     });
-
+};
     // Find a Notificacion by Id Grupo
     exports.findById = (req, res) => {
         const idgrupo = req.params.idgrupo;
         Notificaciones.findById({
-            where: { idgrupo: idgrupo }
+            where: { grupoVecinalIdgrupo: idgrupo }
         }).then(Notificaciones => {
             res.json(Notificaciones);
         }).catch(err => {
@@ -47,20 +48,11 @@ exports.create = (req, res) => {
 
     // FETCH todas las notificaciones de un user de un grupo
     exports.findAll = (req, res) => {
-        sequelize.query("SELECT `id`, `titulo`, `mensaje`, `isAR` FROM `notificaciones` WHERE  `notificaciones`.`grupoVecinalIdgrupo` = :idgrupo AND `notificaciones`.`usuarioUid` = :uid",
-            { replacements: { idgrupo: req.params.idgrupo, uid: req.params.uid }, type: sequelize.QueryTypes.SELECT }).then(Notificaciones => {
+        sequelize.query("SELECT `notifications`.`isAR`,  `notifications`.`titulo`, `notifications`.`mensaje`, `usuarios`.`first`, `usuarios`.`last` FROM `usuarios` INNER JOIN (SELECT * FROM `notificaciones` WHERE  `notificaciones`.`grupoVecinalIdgrupo` = :idgrupo) AS `notifications` ON `usuarios`.`uid` = `notifications`.`usuarioUid`",
+            { replacements: { idgrupo: req.params.idgrupo }, type: sequelize.QueryTypes.SELECT }).then(Notificaciones => {
                 res.json(Notificaciones);
             });
     };
 
-    // FETCH todas las notificaciones de un user de un grupo 2
-    exports.findAllbyID = (req, res) => {
-    Notificaciones.findAll({
-    attributes: [['titulo', 'titulo'],['grupoVecinalIdgrupo', 'grupoVecinalIdgrupo']],
-    where: {[Op.and]: [{'$notificaciones.grupoVecinalIdgrupo$': {[Op.eq]: this.usuarioUid}}]}.then(Notificaciones => {
-        res.json(Notificaciones);
-    }),         
-    });
-};
-
-};
+    
+         
