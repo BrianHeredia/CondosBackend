@@ -3,6 +3,8 @@ module.exports = (sequelize, Sequelize) => {
 		título: {
             type: Sequelize.STRING
         }
+	},{
+		timestamps: false
 	});
 	return Preguntas;
 }

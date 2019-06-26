@@ -6,6 +6,8 @@ module.exports = (sequelize, Sequelize) => {
         descripcion:{
             type: Sequelize.TEXT
         }
+	},{
+		timestamps: false
 	});
 	return Encuestas;
 }

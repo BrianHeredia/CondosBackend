@@ -3,6 +3,8 @@ module.exports = (sequelize, Sequelize) => {
     alicuota: Sequelize.STRING,
     unit: Sequelize.STRING,
     admin: Sequelize.BOOLEAN
-  });
+  },{
+		timestamps: false
+	});
   return usuario_grupo;
 };

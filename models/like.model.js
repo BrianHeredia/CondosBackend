@@ -3,6 +3,8 @@ module.exports = (sequelize, Sequelize) => {
 		isLike: {
             type: Sequelize.BOOLEAN
         }
+	},{
+		timestamps: false
 	});
 	return Likes;
 }
