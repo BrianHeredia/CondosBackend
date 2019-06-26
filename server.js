@@ -27,6 +27,7 @@ require('./route/deudores.route.js')(app);
 require('./route/recibos.route.js')(app);
 require('./route/propuestas.route.js')(app);
 require('./route/notificaciones.route.js')(app);
+require('./route/likes.route.js')(app);
 
 // Create a Server
 var server = app.listen(3000, function () {
