@@ -22,7 +22,7 @@ exports.create = (req, res) => {
 
 // FETCH todos los propuestas de un grupo
 exports.findAll = (req, res) => {
-	sequelize.query("SELECT `titulo`, `presupuesto` FROM `propuestas` WHERE `propuestas`.`grupoVecinalIdgrupo` = :idgrupo ",
+	sequelize.query("SELECT `titulo`, `presupuesto`, `descripcion`, `id` FROM `propuestas` WHERE `propuestas`.`grupoVecinalIdgrupo` = :idgrupo ",
 	{ replacements: { idgrupo: req.params.idgrupo},  type: sequelize.QueryTypes.SELECT} ).then(user=>{
 		res.json(user);
 	});
