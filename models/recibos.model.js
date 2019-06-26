@@ -9,6 +9,8 @@ module.exports = (sequelize, Sequelize) => {
 		pagado: {
 			type: Sequelize.BOOLEAN
 		}  
+	},{
+		timestamps: false
 	});
 	return Recibos;
 }

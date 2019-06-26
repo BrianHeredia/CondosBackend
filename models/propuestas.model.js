@@ -9,6 +9,8 @@ module.exports = (sequelize, Sequelize) => {
         presupuesto: {
             type: Sequelize.STRING
         }
+	},{
+		timestamps: false
 	});
 	return Propuestas;
 }

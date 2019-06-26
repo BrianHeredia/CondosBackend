@@ -3,6 +3,8 @@ module.exports = (sequelize, Sequelize) => {
 		opcion: {
             type: Sequelize.STRING
         }
+	},{
+		timestamps: false
 	});
 	return Opciones;
 }

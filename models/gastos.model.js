@@ -9,6 +9,8 @@ module.exports = (sequelize, Sequelize) => {
 	  	desc: {
 			type: Sequelize.TEXT
 	  	}
+	},{
+		timestamps: false
 	});
 	return Gastos;
 }

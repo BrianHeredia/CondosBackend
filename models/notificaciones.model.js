@@ -14,6 +14,8 @@ module.exports = (sequelize, Sequelize) => {
         isAR: {
             type: Sequelize.BOOLEAN
         }
-    });
+    },{
+		timestamps: false
+	});
     return notificaciones;
 }

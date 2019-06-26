@@ -9,6 +9,8 @@ module.exports = (sequelize, Sequelize) => {
 		date: {
 			type: Sequelize.DATEONLY
 	  	}
+	},{
+		timestamps: false
 	});
 	return Pagos;
 }
