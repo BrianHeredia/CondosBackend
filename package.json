@@ -4,7 +4,8 @@
   "description": "Condos Backend",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compodoc": "./node_modules/.bin/compodoc -p package-lock.json -w -s"
   },
   "keywords": [
     "Condos"
@@ -18,5 +19,8 @@
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.37.6"
+  },
+  "devDependencies": {
+    "@compodoc/compodoc": "^1.1.9"
   }
 }
