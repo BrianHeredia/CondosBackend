@@ -2,7 +2,7 @@ const env = {
   database: 'condos',
   username: 'root',
   password: null,
-  host: 'localhost',
+  host: 'https://condos-backend.herokuapp.com/',
   dialect: 'mysql',
   pool: {
 	  max: 5,
