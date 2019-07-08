@@ -1,7 +1,10 @@
 module.exports = (sequelize, Sequelize) => {
 	const Gastos = sequelize.define('gastos', {
-		date: {
-			type: Sequelize.DATEONLY
+		month: {
+			type: Sequelize.INTEGER
+		  },
+		year: {
+			type: Sequelize.INTEGER
 	  	},
         monto: {
 			type: Sequelize.DECIMAL(10, 2)  

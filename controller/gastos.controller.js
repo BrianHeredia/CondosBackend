@@ -8,7 +8,8 @@ exports.create = (req, res) => {
 	Gastos.create({
 				"desc": req.body.desc,
 				"monto": req.body.monto,
-				"date": req.body.date, 
+				"month": req.body.month, 
+				"year": req.body.year,
                 "usuarioUid": req.body.uid, 
                 "grupoVecinalIdgrupo": req.body.idgrupo
 			}).then(gasto => {		
@@ -22,8 +23,8 @@ exports.create = (req, res) => {
 
 // FETCH todos los gastos de un user para un mes.
 exports.findAll = (req, res) => {
-	sequelize.query("SELECT `monto`, `id`, `date`, `desc` FROM `gastos`  WHERE  `gastos`.`grupoVecinalIdgrupo` = :idgrupo AND `gastos`.`date` LIKE :fecha",
-	{ replacements: { idgrupo: req.params.idgrupo, fecha: '2019-'+req.params.mes+'-%' },  type: sequelize.QueryTypes.SELECT} ).then(user=>{
+	sequelize.query("SELECT `monto`, `id`, `month`, `year`, `desc` FROM `gastos`  WHERE  `gastos`.`grupoVecinalIdgrupo` = :idgrupo AND `gastos`.`month` = :mes AND `gastos`.`year` = :year",
+	{ replacements: { idgrupo: req.params.idgrupo, mes: req.params.mes, year: req.params.year },  type: sequelize.QueryTypes.SELECT} ).then(user=>{
 		res.json(user);
 	});
 };
