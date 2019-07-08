@@ -3,9 +3,12 @@ module.exports = (sequelize, Sequelize) => {
 		monto: {
 			type: Sequelize.DECIMAL(10, 2)  
 		},
-		date: {
-			type: Sequelize.DATEONLY
-		},
+		month: {
+			type: Sequelize.INTEGER
+		  },
+		year: {
+			type: Sequelize.INTEGER
+	  	},
 		pagado: {
 			type: Sequelize.BOOLEAN
 		}  

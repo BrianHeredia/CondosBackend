@@ -6,7 +6,8 @@ const sequelize = require('../config/sequelize-conf.js');
 exports.create = (req, res) => {	
 	Recibos.create({
 				"monto": req.body.monto,
-				"date": req.body.date, 
+				"month": req.body.month, 
+				"year": req.body.year,
 				"pagado": false,
                 "usuarioUid": req.body.uid, 
                 "grupoVecinalIdgrupo": req.body.idgrupo
@@ -20,7 +21,7 @@ exports.create = (req, res) => {
 
 // FETCH todos los recibos de un user de un grupo
 exports.findAll = (req, res) => {
-	sequelize.query("SELECT `monto`, `date`, `id`, `pagado` FROM `recibos` WHERE  `recibos`.`grupoVecinalIdgrupo` = :idgrupo AND `recibos`.`usuarioUid` = :uid",
+	sequelize.query("SELECT `monto`, `year`, `month`, `id`, `pagado` FROM `recibos` WHERE  `recibos`.`grupoVecinalIdgrupo` = :idgrupo AND `recibos`.`usuarioUid` = :uid",
 	{ replacements: { idgrupo: req.params.idgrupo, uid: req.params.uid },  type: sequelize.QueryTypes.SELECT} ).then(user=>{
 		res.json(user);
 	});

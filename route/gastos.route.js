@@ -5,6 +5,6 @@ module.exports = function(app) {
     app.post('/api/gastos', gastos.create);
  
     // Retrieve all grupos
-    app.get('/api/gastos/:idgrupo/:mes', gastos.findAll);
+    app.get('/api/gastos/:idgrupo/:mes/:year', gastos.findAll);
 
 }
