@@ -1,6 +1,6 @@
 const env = {
-  database: 'heroku_35742a7059',
-  username: 'b8bb25885136e8@us-cdbr-iron-east-02.cleardb.net',
+  database: 'heroku_35742a70597b217',
+  username: 'b8bb25885136e8',
   password: '5fa26cef',
   host: 'us-cdbr-iron-east-02.cleardb.net',
   dialect: 'mysql',
