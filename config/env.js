@@ -2,7 +2,7 @@ const env = {
   database: 'condos',
   username: 'b8bb25885136e8',
   password: '5fa26cef',
-  host: 'localhost',
+  host: 'us-cdbr-iron-east-02.cleardb.net',
   dialect: 'mysql',
   pool: {
 	  max: 5,
