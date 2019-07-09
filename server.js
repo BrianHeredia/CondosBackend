@@ -2,7 +2,9 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json())
- 
+var PORT = process.env.PORT || 3000;
+
+
 const cors = require('cors')
 const corsOptions = {
   origin: 'https://condos-a774b.firebaseapp.com',
@@ -30,7 +32,7 @@ require('./route/notificaciones.route.js')(app);
 require('./route/likes.route.js')(app);
 
 // Create a Server
-var server = app.listen(3000, function () {
+var server = app.listen(PORT, function () {
  
   let host = server.address().address
   let port = server.address().port

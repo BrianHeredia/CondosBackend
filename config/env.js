@@ -1,7 +1,7 @@
 const env = {
   database: 'condos',
-  username: 'root',
-  password: null,
+  username: 'b8bb25885136e8',
+  password: '5fa26cef',
   host: 'localhost',
   dialect: 'mysql',
   pool: {
